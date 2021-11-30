@@ -2,16 +2,7 @@
 <template>
   <div>
     <dl
-      class="
-        mt-5
-        grid grid-cols-1
-        rounded-lg
-        bg-white
-        overflow-hidden
-        shadow
-        divide-y divide-gray-200
-        md:grid-cols-3 md:divide-y-0 md:divide-x
-      "
+      class="mt-5 grid grid-cols-1 rounded-md bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x"
     >
       <div v-for="item in stats" :key="item.name" class="px-4 py-5 sm:p-6">
         <dt class="text-base font-normal text-gray-900">

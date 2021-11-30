@@ -15,21 +15,24 @@
       </div>
     </div>
     <index-indicators v-if="!survey_id" class="px-4" />
-    <div v-for="survey in filterSurveys" :key="survey.id" class="px-3">
-      <div class="py-3">
+    <div v-for="survey in filterSurveys" :key="survey.id" class="px-4 pt-4">
+      <div class="py-2">
         <div class="grid grid-cols-2 bg-green-700 px-4 py-2 rounded-t-md">
-          <h3 class="col-span-1 text-md sm:text-lg leading-6 text-gray-50">
-            {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
-          </h3>
-          <h3 class="pt-1 col-span-1 text-md sm:text-lg text-gray-50 text-right">
-            COMPLETE
+          <div class="col-span-1 flex">
+            <CheckCircleIcon class="h-5 w-5 mt-1 mr-2 text-gray-100"/>
+            <h3 class="text-md sm:text-lg leading-6 text-gray-50">
+              {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
+            </h3>
+          </div>
+          <h3 class="col-span-1 text-md sm:text-lg text-gray-50 text-right">
+            Complete
           </h3>
         </div>
         <div class="bg-white overflow-hidden shadow-md rounded-md py-4">
           <div>
-            <h2 v-if="survey_id" class="px-4 py-2 text-lg">Survey Details</h2>
-            <dl class="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 px-4">
-              <div class="sm:col-span-1">
+            <h2 class="px-4 py-2 text-lg">Survey Details</h2>
+            <dl class="grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-7 px-4">
+              <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">Crew leader</dt>
                 <dd class="text-sm text-gray-900">
                   {{ survey.leader }}
@@ -41,13 +44,13 @@
                   {{ survey.affiliation }}
                 </dd>
               </div>
-              <div class="sm:col-span-1">
+              <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">Email address</dt>
                 <dd class="text-sm text-gray-900">
                   {{ survey.email }}
                 </dd>
               </div>
-              <div class="sm:col-span-1">
+              <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">
                   Contact number
                 </dt>
@@ -81,6 +84,9 @@
                 <dd class="text-sm text-gray-900">{{ survey.snow_cover }}%</dd>
               </div>
             </dl>
+            <div v-if="survey_id" class="p-4">
+              <Map />
+            </div>
             <h2 v-if="survey_id" class="px-4 py-2 text-lg">
               Raptor Sightings ({{ filterSightings.length }})
             </h2>
@@ -99,9 +105,12 @@
 <script>
 import IndexHeader from "@/components/index-header.vue";
 
+import { CheckCircleIcon } from '@heroicons/vue/outline'
+
 import { getSurveys, getSightings } from "@/services/wrs-services.js";
 import SightingsTable from "./components/sightings-table.vue";
 import IndexIndicators from "./components/index-indicators.vue";
+import Map from "./components/map.vue";
 
 export default {
   name: "App",
@@ -109,6 +118,8 @@ export default {
     IndexHeader,
     SightingsTable,
     IndexIndicators,
+    Map,
+    CheckCircleIcon
   },
   data() {
     return {
