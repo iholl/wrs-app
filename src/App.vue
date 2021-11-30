@@ -12,18 +12,29 @@
         </select>
       </div>
     </div>
-    <index-indicators v-if="!survey_id" class="px-4" />
+    <index-indicators :surveys="surveys" v-if="!survey_id" class="px-4" />
     <div v-for="survey in filterSurveys" :key="survey.id" class="px-4 pt-4">
       <div class="py-2">
-        <div class="grid grid-cols-2 bg-green-700 px-4 py-2 rounded-t-md">
+        <div v-if="survey.complete == 'Yes'" class="grid grid-cols-2 bg-green-700 px-4 py-2 rounded-t-md">
           <div class="col-span-1 flex">
-            <CheckCircleIcon class="h-5 w-5 mt-1 mr-2 text-gray-100"/>
+            <CheckCircleIcon class="h-6 w-6 mr-1 text-gray-100"/>
             <h3 class="text-md sm:text-lg leading-6 text-gray-50">
               {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
             </h3>
           </div>
           <h3 class="col-span-1 text-md sm:text-lg text-gray-50 text-right">
             Complete
+          </h3>
+        </div>
+        <div v-if="survey.complete == 'No'" class="grid grid-cols-2 bg-red-700 px-4 py-3 rounded-t-md">
+          <div class="col-span-1 flex">
+            <XCircleIcon class="h-6 w-6 mr-1 text-gray-100"/>
+            <h3 class="text-md sm:text-lg leading-6 text-gray-50">
+              {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
+            </h3>
+          </div>
+          <h3 class="col-span-1 text-md sm:text-lg text-gray-50 text-right">
+            Incomplete
           </h3>
         </div>
         <div class="bg-white overflow-hidden shadow-md rounded-md py-4">
@@ -99,7 +110,7 @@
 <script>
 import IndexHeader from "@/components/index-header.vue";
 
-import { CheckCircleIcon } from '@heroicons/vue/outline'
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/vue/outline'
 
 import { getSurveys, getSightings } from "@/services/wrs-services.js";
 import SightingsTable from "./components/sightings-table.vue";
@@ -113,13 +124,14 @@ export default {
     SightingsTable,
     IndexIndicators,
     Map,
-    CheckCircleIcon
+    CheckCircleIcon,
+    XCircleIcon
   },
   data() {
     return {
       survey_id: "",
       surveys: null,
-      sightings: null,
+      sightings: null
     };
   },
   async created () {
@@ -141,7 +153,7 @@ export default {
       return this.sightings.filter(
         (sighting) => !sighting.ndow_id.indexOf(this.survey_id)
       );
-    }
+    },
   }
 };
 </script>

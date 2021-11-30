@@ -47,7 +47,7 @@
                   {{ sighting.species }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {{ sighting.number_species }}
+                  {{ sighting.species_count }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {{ sighting.activity }}
@@ -56,10 +56,10 @@
                   {{ sighting.distance.replace("_", " - ") }} m
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {{ sighting.road_side }}
+                  {{ sighting.direction }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {{ sighting.obs_mph }}
+                  {{ sighting.speed }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {{ sighting.doubleback }}
