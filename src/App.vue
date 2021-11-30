@@ -7,9 +7,7 @@
         <select v-model="survey_id">
           <option value="">None</option>
           <option value="10_20211110_NDOW_DEV">10_20211110_NDOW_DEV</option>
-          <option value="test_20211115_mrjeffress">
-            test_20211115_mrjeffress
-          </option>
+          <option value="test_20211115_mrjeffress">test_20211115_mrjeffress</option>
           <option value="1_20211129_NDOW_DEV">1_20211129_NDOW_DEV</option>
         </select>
       </div>
@@ -90,11 +88,7 @@
             <h2 v-if="survey_id" class="px-4 py-2 text-lg">
               Raptor Sightings ({{ filterSightings.length }})
             </h2>
-            <sightings-table
-              v-if="survey_id"
-              :sightings="filterSightings"
-              class="px-4"
-            />
+            <sightings-table v-if="survey_id" :sightings="filterSightings" class="px-4"/>
           </div>
         </div>
       </div>
