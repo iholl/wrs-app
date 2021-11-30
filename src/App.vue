@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-gray-100">
+  <div class="h-full bg-gray-50">
     <index-header />
     <div class="pb-6 text-center">
       <div class="filter">
@@ -13,60 +13,52 @@
     </div>
     <div v-for="survey in filterSurveys" :key="survey.id" class="px-3">
       <div class="py-3">
-        <div class="bg-white px-4 py-2 border-b border-gray-200">
+        <div class="bg-blue-400 px-4 py-2 rounded-t-md">
           <h3 class="text-lg leading-6 font-medium text-gray-900">
             {{ survey.route_id }} - {{ survey.survey_date }}
           </h3>
         </div>
-        <div class="bg-white overflow-hidden shadow-md">
-          <dl class="divide-y divide-gray-200">
-            <div class="px-4 py-1">
-              <dt class="text-sm font-semibold text-gray-500">
-                Crew Leader Information
-              </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 capitalize">
-                {{ survey.leader }} ({{ survey.affiliation }})
-              </dd>
-              <dd class="mt-1 text-sm text-gray-900 capitalize">
-                <div class="py-1">
-                  <span class="pr-1 text-sm font-medium text-gray-500">Email:</span>
-                  <span>{{ survey.email }}</span>
-                </div>
-              </dd>
-              <dt class="mt-1 text-sm font-semibold text-gray-500">
-                Weather Information
-              </dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 capitalize">
-                <div class="py-1">
-                  <span class="pr-1 text-sm font-medium text-gray-500">Precipitation:</span>
-                  <span>{{ survey.precipitation }}</span>
-                  <span class="px-1 text-sm font-medium text-gray-500">Ice:</span>
-                  <span>{{ survey.ice }}</span>
-                  <span class="px-1 text-sm font-medium text-gray-500">Fog:</span>
-                  <span>{{ survey.fog }}</span>
-                  <span class="px-1 text-sm font-medium text-gray-500">Snow Cover:</span>
-                  <span>{{ survey.snow_cover }}</span>
-                </div>
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div v-if="survey_id" class="bg-white overflow-hidden shadow-md">
-          <div class="bg-white px-4 py-2 border-b border-gray-200">
-            <h4 class="text-md leading-6 font-thin text-gray-900">
-              Sightings
-            </h4>
+        <div class="bg-white overflow-hidden shadow-md rounded-md py-4">
+          <div>
+            <h2 v-if="survey_id" class="px-4 py-1 text-lg">Survey Details</h2>
+            <dl class="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 px-4">
+              <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                  Crew leader
+                </dt>
+                <dd class="text-sm text-gray-900">
+                  {{ survey.leader }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                  Affiliation
+                </dt>
+                <dd class="text-sm text-gray-900">
+                  {{ survey.affiliation }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                  Email address
+                </dt>
+                <dd class="text-sm text-gray-900">
+                  {{ survey.email }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                  Contact number
+                </dt>
+                <dd class="text-sm text-gray-900">
+                  {{ survey.phone }}
+                </dd>
+              </div>
+            </dl>
+            <h2 v-if="survey_id" class="px-4 py-2 text-lg">Raptor Sightings</h2>
+            <sightings-table v-if="survey_id" :sightings="filterSightings" class="px-4" />
           </div>
-          <ul role="list" class="pb-3 divide-y divide-gray-200">
-            <li v-for="sighting in filterSightings" :key="sighting.id" class="px-4 py-2">
-              <h5 class="text-md text-gray-700">{{ sighting.sight_time }}</h5>
-              <p class="px-1 text-sm text-gray-700">{{ sighting.species }} ({{ sighting.number_species }}) {{ sighting.activity }}, {{ sighting.road_side }}, {{ sighting.distance }}(m) ({{ sighting.x }}, {{ sighting.y }})</p>
-            </li>
-          </ul>
         </div>
-        <!-- <div class="bg-white px-4 py-5 border-b border-gray-200">
-          {{ sightings }}
-        </div> -->
       </div>
     </div>
   </div>
@@ -77,11 +69,13 @@ import IndexHeader from "@/components/index-header.vue"
 // import SurveyCard from "@/components/index-header.vue"
 
 import { getSurveys, getSightings } from "@/services/wrs-services.js"
+import SightingsTable from './components/sightings-table.vue';
 
 export default {
   name: "App",
   components: {
     IndexHeader,
+    SightingsTable,
     // SurveyCard
   },
   data () {
