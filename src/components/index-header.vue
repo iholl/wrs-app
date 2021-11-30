@@ -4,7 +4,7 @@
       Winter Raptor Surveys
     </div>
     <div class="text-sm text-gray-400">
-      Filter the data to see the related sightings for each survey
+      Select a survey id to view the survey details
     </div>
   </div>
 </template>
