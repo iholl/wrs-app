@@ -15,7 +15,7 @@
     <index-indicators :surveys="surveys" v-if="!survey_id" class="px-4" />
     <div v-for="survey in filterSurveys" :key="survey.id" class="px-4 pt-4">
       <div class="py-2">
-        <div v-if="survey.complete == 'Yes'" class="grid grid-cols-2 bg-green-700 px-4 py-2 rounded-t-md">
+        <div v-if="survey.complete == 'Yes'" class="grid grid-cols-2 bg-green-700 px-4 py-3 rounded-t-md">
           <div class="col-span-1 flex">
             <CheckCircleIcon class="h-6 w-6 mr-1 text-gray-100"/>
             <h3 class="text-md sm:text-lg leading-6 text-gray-50">
@@ -43,7 +43,7 @@
             <dl class="grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-7 px-4">
               <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">Crew leader</dt>
-                <dd class="text-sm text-gray-900">
+                <dd class="text-sm text-gray-900 capitalize">
                   {{ survey.leader }}
                 </dd>
               </div>
@@ -94,7 +94,7 @@
               </div>
             </dl>
             <div v-if="survey_id" class="p-4">
-              <Map :geojson="geojson" />
+              <Map :geojson="geojson" :survey_id="survey_id" />
             </div>
             <h2 v-if="survey_id" class="px-4 py-2 text-lg">
               Raptor Sightings ({{ filterSightings.length }})
@@ -145,7 +145,7 @@ export default {
     })
 
     await getGeojson().then((response) => {
-      this.geojson = response.data
+      this.geojson = response.data[0].json_build_object
     })
   },
   computed: {
