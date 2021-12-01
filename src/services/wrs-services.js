@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000"
+const baseURL = process.env.VUE_APP_API_URL
 
 const apiClient = axios.create({
   baseURL: baseURL,
