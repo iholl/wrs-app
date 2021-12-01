@@ -19,6 +19,10 @@ const getSightings = () => {
   return apiClient.get("/sightings/")
 }
 
+const getGeojson = () => {
+  return apiClient.get("/geojson")
+}
+
 const getSightingsById = () => {
   return apiClient.get("/sightings/10_20211110_NDOW_DEV")
 }
@@ -26,5 +30,6 @@ const getSightingsById = () => {
 export {
   getSurveys,
   getSightings,
-  getSightingsById
+  getSightingsById,
+  getGeojson
 }

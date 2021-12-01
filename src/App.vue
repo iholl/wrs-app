@@ -94,7 +94,7 @@
               </div>
             </dl>
             <div v-if="survey_id" class="p-4">
-              <Map />
+              <Map :geojson="geojson" />
             </div>
             <h2 v-if="survey_id" class="px-4 py-2 text-lg">
               Raptor Sightings ({{ filterSightings.length }})
@@ -112,7 +112,7 @@ import IndexHeader from "@/components/index-header.vue";
 
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/vue/outline'
 
-import { getSurveys, getSightings } from "@/services/wrs-services.js";
+import { getSurveys, getSightings, getGeojson } from "@/services/wrs-services.js";
 import SightingsTable from "./components/sightings-table.vue";
 import IndexIndicators from "./components/index-indicators.vue";
 import Map from "./components/map.vue";
@@ -131,7 +131,8 @@ export default {
     return {
       survey_id: "",
       surveys: null,
-      sightings: null
+      sightings: null,
+      geojson: null,
     };
   },
   async created () {
@@ -141,6 +142,10 @@ export default {
 
     await getSightings().then((response) => {
       this.sightings = response.data
+    })
+
+    await getGeojson().then((response) => {
+      this.geojson = response.data
     })
   },
   computed: {
