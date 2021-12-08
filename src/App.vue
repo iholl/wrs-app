@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-gray-50">
+  <div class="h-full bg-gray-200">
     <index-header class="px-4" />
     <div class="text-center">
       <div class="filter">

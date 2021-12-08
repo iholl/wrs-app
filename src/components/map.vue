@@ -54,6 +54,8 @@ export default {
         
         const defualtTip = "<p>Mouse over sightings to see the details for that sighting</p>"
         
+        layer.bindTooltip(features.properties.sight_time.toString(), { permanent: true });
+
         layer.on('mouseover', function () {
           document.getElementById("info").innerHTML = sightingDetails;
         });
@@ -64,7 +66,7 @@ export default {
     }, 
     options() {
       return {
-        onEachFeature: this.onEachFeature
+        onEachFeature: this.onEachFeature,
       }
     }
   }
