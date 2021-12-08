@@ -12,7 +12,7 @@
           <div class="flex items-baseline text-2xl font-semibold text-red-500">
             {{ surveys.length }}
             <span class="ml-2 text-sm font-medium text-gray-500">
-              from 2 yesterday
+              surveys
             </span>
           </div>
         </dd>
@@ -23,9 +23,9 @@
         </dt>
         <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
           <div class="flex items-baseline text-2xl font-semibold text-red-500">
-            7
+            {{ sightings.length }}
             <span class="ml-2 text-sm font-medium text-gray-500">
-              from 6 yesterday
+              sightings
             </span>
           </div>
         </dd>
@@ -36,10 +36,10 @@
         </dt>
         <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
           <div class="flex items-baseline text-2xl font-semibold text-red-500">
-            3.33%
-            <span class="ml-2 text-sm font-medium text-gray-500">
+            {{ (sightings.length / surveys.length).toFixed(2) }} %
+            <!-- <span class="ml-2 text-sm font-medium text-gray-500">
               from 3% yesterday
-            </span>
+            </span> -->
           </div>
         </dd>
       </div>
@@ -49,6 +49,6 @@
 
 <script>
 export default {
-  props: ["surveys"],
+  props: ["surveys", "sightings"],
 };
 </script>

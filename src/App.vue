@@ -12,7 +12,7 @@
         </select>
       </div>
     </div>
-    <index-indicators :surveys="surveys" v-if="!survey_id" class="px-4" />
+    <index-indicators :surveys="surveys" :sightings="sightings" v-if="!survey_id" class="px-4" />
     <div v-for="survey in filterSurveys" :key="survey.id" class="px-4 pt-4">
       <div class="py-2">
         <div v-if="survey.complete == 'Yes'" class="grid grid-cols-2 bg-green-700 px-4 py-3 rounded-t-md">

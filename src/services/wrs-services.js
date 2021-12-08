@@ -19,17 +19,16 @@ const getSightings = () => {
   return apiClient.get("/sightings/")
 }
 
+// const getSightingsById = () => {
+//   return apiClient.get("/sightings/10_20211110_NDOW_DEV")
+// }
+
 const getGeojson = () => {
   return apiClient.get("/geojson")
-}
-
-const getSightingsById = () => {
-  return apiClient.get("/sightings/10_20211110_NDOW_DEV")
 }
 
 export {
   getSurveys,
   getSightings,
-  getSightingsById,
   getGeojson
 }
