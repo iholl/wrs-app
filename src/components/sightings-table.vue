@@ -44,7 +44,7 @@
                   {{ sighting.sight_time }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {{ sighting.species }}
+                  {{ sighting.species_name }}
                 </td>
                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {{ sighting.species_count }}
