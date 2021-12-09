@@ -19,7 +19,7 @@
           <div class="col-span-1 flex">
             <CheckCircleIcon class="h-6 w-6 mr-1 text-gray-100"/>
             <h3 class="text-md sm:text-lg leading-6 text-gray-50">
-              {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
+              {{ survey.route_id }} - {{ survey.surveyed_date }}
             </h3>
           </div>
           <h3 class="col-span-1 text-md sm:text-lg text-gray-50 text-right">
@@ -30,7 +30,7 @@
           <div class="col-span-1 flex">
             <XCircleIcon class="h-6 w-6 mr-1 text-gray-100"/>
             <h3 class="text-md sm:text-lg leading-6 text-gray-50">
-              {{ survey.route_id }} - {{ survey.survey_date / 100000 }}
+              {{ survey.route_id }} - {{ survey.surveyed_date }}
             </h3>
           </div>
           <h3 class="col-span-1 text-md sm:text-lg text-gray-50 text-right">
