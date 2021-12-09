@@ -48,7 +48,7 @@ export default {
     },
     onEachFeature() {
       return (features, layer) => {        
-        const sightingDetails = "<h1><b> SPECIES " + features.properties.species + "</b></h1>" +
+        const sightingDetails = "<h1><b> SPECIES " + features.properties.species_name + "</b></h1>" +
           "<p>Time: " + features.properties.sight_time + "</p>" +
           "<p>Survey ID: " + features.properties.ndow_id + "</p>";
         
